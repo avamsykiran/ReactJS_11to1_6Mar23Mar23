@@ -67,4 +67,52 @@ ReactJS
 
                 rest-api    <-----data operation (xml/json)------>  data opertions like CRUD.
 
-    
+    NodeJS?
+
+        is a javascript runtime to enable javascript to execute in a stand alone mode without any browser.
+
+        while developing a reactjs app, we have to
+
+            compose                     IDE             VSCode
+            build and package           build tool      NPM     (part of NodeJS)
+            manage dependencies         build tool      NPM     (part of NodeJS)
+            test                        testing lib     Jest    is a JS library (has to run on NodeJS)
+            deploy /host                Dev Server      react-scripts server    (has to run on NodeJS)
+            execute                     browser         chrome
+
+        hence we need nodejs.
+
+    NPM
+
+        node package manager.
+
+        each app is called a package in nodejs. 
+
+        npm --version
+
+        npm init                is used to initialize a folder as a node project.
+        npm init -y             is used to initialize a folder as a node project skipping the wizard.
+
+        package.json            is the build config file. contains project meta data, list
+                                of dependencies and a few scripts.
+
+                                npm start               is used to build and execute the app
+                                npm test                is used to build and run test cases
+                                npm build               is used to build and pack
+                                npm run <custom-script>
+
+        npm install library-name --save     is used to install a library local to the project.
+        npm install library-name --save -g  is used to install a library globally on the dev-machine
+        npm install library-name --save-dev is used to install a library local to the project but not
+                                                include it in the final bundle.
+
+        node_modules        is available in each project and only in our 'users' folder.
+
+                            all globally installed packages will goto 'node_module' of 'users' fodler
+                            all locally installed packages will goto 'node_module' of your project.
+
+        npm install         will create a node_modules folder in the project and downloads
+                            all the libraries listed in package.json
+
+        
+        
