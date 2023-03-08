@@ -108,11 +108,103 @@ ReactJS
 
         node_modules        is available in each project and only in our 'users' folder.
 
-                            all globally installed packages will goto 'node_module' of 'users' fodler
+                            all globally installed packages will goto 'node_module' of 'users' folder
                             all locally installed packages will goto 'node_module' of your project.
 
         npm install         will create a node_modules folder in the project and downloads
                             all the libraries listed in package.json
 
         
-        
+    Create a React App
+
+        npx create-react-app proj-name
+
+        (or)
+
+        npm intall -g create-react-app
+        create-react-app proj-name
+
+    JSX ?
+
+        JavaScript XML (JavaScript eXtended MarkUp Language)
+
+            1. this script allows us to assign html elements directly 
+                to a javascript variable.
+            2. this script allows interpolation {} to embed javascript inside html.
+            3. We can use a set of paranthesis to compose multi-line html.
+            4. we can use operators like &&, || and ?: for conditional formatting.
+            5. it is completly case sensitive and all html elements must be in lower case.
+            6. All html attributes must follow camel case as hypens are not allowed:
+
+                'onclick'  is writeen as 'onClick'
+                'aris-media'    is written as 'arisMedia'
+
+            7. the html 'class' attribute is not allowed, instead we use 'className'.
+
+                let userName = "Vamsy";
+                let myPara = <p> {userName} </p>;
+
+                let p=23000;
+                let r=3.2;
+                let t=236;
+                let myPara2 = <p> Interest to be paid is { (p*t*r)/100 } </p>;
+
+                let friends = ["Vamsy","Sagar","Suseela","Kiran"];
+                let frdsList = friends.length===0 ? <p>No Freidns</p> : (
+                    <ol>
+                        { friends.map( ele => <li>{ele}</li> ) }
+                    </ol>
+                );
+
+    React Components
+
+        reactjs offers html extendability meaning we can create our own html elements (tags) an attributes in
+        reactjs, such react elements are called components.
+
+        Function Components
+        Class Components
+
+    Function Components
+
+        is are known as state-less components
+
+        is a javascript function that returns a single JSX element and can accept an optional arg 'props'.
+
+        react components must be following initial capitalization.
+
+        const Header = () => <h3>My First React SPA</h3>;
+
+        <Header></Header>
+
+    props ?
+
+        is an object that carries data from parent component into a child component through attributes.
+
+    Class Components
+
+        is known as state-ful component.
+
+        is a javascript class that extends React.Component.
+
+            React.Component offers
+                1. state
+                2. setState()
+                3. componentDidMount()
+                4. render()
+                5. componentDidUpdate()
+                6. componentDidCatch()
+                7. componentWillUnMount()
+
+            class Dashboard extends React.Component{
+
+            }
+
+        state ?
+
+            is a field used to hold all the related data of a component.
+            the state field is initialized in the component constructor.
+
+
+
+
+
