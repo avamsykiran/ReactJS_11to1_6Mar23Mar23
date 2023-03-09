@@ -196,7 +196,14 @@ ReactJS
                 7. componentWillUnMount()
 
             class Dashboard extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {};
+                }
 
+                render(){
+                    return (<p></p>);
+                }
             }
 
         state ?
@@ -204,7 +211,37 @@ ReactJS
             is a field used to hold all the related data of a component.
             the state field is initialized in the component constructor.
 
+            the state is observed for changes and once state gets changed
+            the 'render()' get invoked automatically.
 
+            'state' is immutable. but the entire state has to be replaced.
+
+            to replace state we use 'setState()' method.
+
+        render() 
+
+            method is to return the JSX element to be outputted by our component. means
+            the developer has to override the render() to return the disired DOM.
+
+        props ? 
+
+            class components receive 'props' through thier constructor.
+
+    Integrating Bootstrap
+
+        npm i bootstrap --save
+
+        node_module
+            |- bootstrap
+                |- dist
+                    |-css
+                        |-bootstrap.min.css    
+                    |-js
+                        |-bootstrap.bundle.js
+
+        import both of these files into index.js
+
+    
 
 
 
