@@ -25,6 +25,12 @@ class StockPage extends Component {
 
     remove = id => this.setState({ items: this.state.items.filter(i => i.id !== id) });
 
+    markEditable = id => this.setState({ items: this.state.items.map( i => i.id!==id ? i : {...i,isEditing:true}) });
+
+    unMarkEditable = id => this.setState({ items: this.state.items.map( i => i.id!==id ? i : {...i,isEditing:undefined}) });
+
+    update = item => this.setState({ items: this.state.items.map( i => i.id!==item.id ? i : {...item,isEditing:undefined}) });
+
     render() {
 
         let { items } = this.state;
@@ -45,7 +51,7 @@ class StockPage extends Component {
                         </thead>
                         <tbody>
 
-                            <ItemInputRow save={this.add}/>
+                            <ItemInputRow save={this.add} />
 
                             {(!items || items.length === 0) &&
                                 <tr>
@@ -56,7 +62,9 @@ class StockPage extends Component {
                             }
                             {(items && items.length > 0) && items.map(
                                 item => (
-                                    <ItemRow item={item} remove={this.remove} />
+                                    item.isEditing ? 
+                                    <ItemInputRow key={item.id} item={item} save={this.update} cancel={this.unMarkEditable} /> :
+                                    <ItemRow key={item.id} item={item} remove={this.remove} markEditable={this.markEditable} />
                                 )
                             )}
                         </tbody>
