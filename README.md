@@ -241,7 +241,10 @@ ReactJS
 
         import both of these files into index.js
 
-    
+    Assignment # 1
+
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarical component design pattern. The Employee fields are your choice (miniumum 4 fields).
 
 
 
