@@ -244,7 +244,67 @@ ReactJS
     Assignment # 1
 
         Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
-        hirarical component design pattern. The Employee fields are your choice (miniumum 4 fields).
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
 
+    ReactJS Forms
+
+        Controlled
+
+            the form element is boudn to a state field and the changes are tracked using onChanges event.
+            the single source of truth is ensured.
+
+        UnControlled
+
+            use react 'refs'.
+            where a ref is a accessable id given to an html-element.
+
+            <input type="text" ref="tb1" />
+
+            let data = this.refs.tb1.value;
+
+    Component LifeCycle Methods
+
+        constructor()               //use to initialize the state and receive 'props'
+            ↓
+            render()                //used to return the DOM to be display for the component.
+            ↓
+            componentDidMount()     //used to execute any job after the first 'render()' is done.
+
+                /*****************************************************************/
+                    when ever setState() is called through any event handler or
+                    componentDidMount()
+                /*****************************************************************/
+                ↑    ↓
+                |    render()                //used to return the DOM to be display for the component.
+                |      ↓
+                |      componentDidUpdate() //used to execute any job after each rendering.
+                |       ↓
+                |-------|
+
+    React Hooks
+
+        a hook is a function designed to provide a particular react feature to a functional component,
+        so that functional components can do everything that a class component is capable of.
+
+        this makes functional component onpar with class components and more over function components
+        are easy to test and hence 90% of the app is constructed using function component.
+
+        LifeCycle Hooks
+
+            useState            provides state to a function component.
+                                returns a [getter,setter]
+                                accepts an initial value
+
+                                let [x,setX] = useState(0);
+
+            useEffect           provides componentDidMount and componentDidUpdate equivalents.
+                                accept a callback and an optional dependency array.
+
+                                useEffect( () => {/*this method gets executed after every render()*/ } )
+                                useEffect( () => {//this method gets executed after the first render()} , [])
+                                useEffect( () => {/*this method gets executed after every render() if x changed */ } , [x])
+
+
+           
 
 
