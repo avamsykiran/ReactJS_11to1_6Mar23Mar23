@@ -304,7 +304,64 @@ ReactJS
                                 useEffect( () => {//this method gets executed after the first render()} , [])
                                 useEffect( () => {/*this method gets executed after every render() if x changed */ } , [x])
 
+    Application Level State Management using Redux
 
+        npm i redux react-redux --save
+
+        redux       is a individual library used to maintain state for a UI/UX app.
+
+                    store           is an object managed by redux to hold the state.
+                                    an application has only one store.
+
+                                    let hrStore = createStore(hrReducer);
+                                    let hrStore = createStore(combineReducers({emps:empsReducer,detps:deptsReducer}));
+
+                    reducer         is a pure function that does data operations like CRUD on the store.
+
+                                    const empsReducer = (state,action) => {
+                                        //peform the data operations
+                                        //deopending on the action coming in
+
+                                        return modifedState; //is going to repalce the state in the store.
+                                    };
+
+                    dispatch        is a dynamic function that is used to send actions to a reducer
+                                    from a component.
+
+                    action          is an object having a type and payload as fields; where type indicates
+                                    what operation needs to be done and payload carries the data need to do the operation.
+
+                                    const EMP_INSERT_ACTION = {type:"ADD",emp:{id:1,name:"Vamsy",basic:45600} }
+                                    const DEL_EMP_ACTION = { type="REMOVE",empId:123};
+
+        react-redux     is  a library that acts as integration between redux and react.                             
            
+                Provider        is a component that wrap a store around the top-level component of our app.
 
+                                <Provider store={hrStore}>
+                                 <App />
+                                </Provider>
+
+                useSelector     is a hook used to extract needed data from the globalState of the store into a component.
+
+                useDispatch     is a hook that returns 'dispatch' function.
+
+                connect(mapStateToProps,mapDispatchToProps)(classComponent)
+                                is used to integrate dispatch and extract data from a globalState into a class component.
+
+
+            store →-------(state)----------------------
+             ↑                   ↓                   ↓
+             |                   |                   |
+             |                   | useSelector       | useSelector (extract needed info from global-state)
+             |                   |                   |
+             | modifiedState   Component1          Component2
+             |                   |                   |
+             |                   |                   |
+             |                   | useDispatch       | useDispatch
+             |                   |                   |
+             |                   |                   |
+             |          |--←dispatch(action)         |
+          reducer ←-----|                            |
+                        |---------------------------←|dispatch(action)
 
