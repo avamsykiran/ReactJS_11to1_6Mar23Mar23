@@ -369,3 +369,29 @@ ReactJS
         Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
         hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
         The state has to be at application level and managed using REDUX.
+
+
+    cosnt itemsReducer = (state = { itemsList=[] } ,action) =>{
+        //itmes managed
+    }
+
+    cosnt empsReducer = (state = { empsList=[] } ,action) =>{
+        //emps managed
+    }
+
+    cosnt deptsReducer = (state = { deptsList=[] } ,action) =>{
+        //depsts managed
+    }
+
+    cosnt invStore = createStore(itemsReducer);
+
+        invStore                                    let items = useSelector(state => state.itemsList);
+            |- itemsList
+
+    cosnt hrStore = createStore(combineReducers({emps:empsReducer,depts:deptsReducer}));
+
+        hrStore                                     let emps = useSelector(state => state.emps.empsList)
+            |-depts
+            |   |-deptsList
+            |-emps
+                |-empsList
