@@ -349,7 +349,6 @@ ReactJS
                 connect(mapStateToProps,mapDispatchToProps)(classComponent)
                                 is used to integrate dispatch and extract data from a globalState into a class component.
 
-
             store →-------(state)----------------------
              ↑                   ↓                   ↓
              |                   |                   |
@@ -365,3 +364,8 @@ ReactJS
           reducer ←-----|                            |
                         |---------------------------←|dispatch(action)
 
+    Assignment # 2
+
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
+        The state has to be at application level and managed using REDUX.

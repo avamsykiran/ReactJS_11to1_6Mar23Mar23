@@ -1,6 +1,10 @@
+import { useDispatch } from 'react-redux';
+import { createAddItemAction, createUpdateItemAction, createUnMarkItemEditableAction } from '../state/stockActions';
 import { useState } from "react";
 
-const ItemInputRow = ({ item, save, cancel }) => {
+const ItemInputRow = ({ item }) => {
+
+    const dispatch = useDispatch();
 
     let [id, setId] = useState(item ? item.id : 0);
     let [name, setName] = useState(item ? item.name : '');
@@ -10,7 +14,8 @@ const ItemInputRow = ({ item, save, cancel }) => {
     let isEditing = item ? item.isEditing : undefined;
 
     const submitBtnClick = e => {
-        save({ id, name, quantity, unit });
+        let item = { id, name, quantity, unit };
+        dispatch(isEditing ? createUpdateItemAction(item) : createAddItemAction(item));
         setId(0);
         setName('');
         setQuantity(0);
@@ -41,7 +46,7 @@ const ItemInputRow = ({ item, save, cancel }) => {
                         <button type="button" className="btn btn-sm btn-secondary me-1"
                             onClick={submitBtnClick}>SAVE</button>
                         <button type="button" className="btn btn-sm btn-danger"
-                            onClick={e => cancel(id)}>CANCEL</button>
+                            onClick={e => dispatch(createUnMarkItemEditableAction(id))}>CANCEL</button>
                     </td>
                 ) :
                 <td>
