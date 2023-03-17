@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "name": "Rice",
+      "quantity": 350,
+      "unit": "50 Kg Bag",
+      "id": 1
+    },
+    {
+      "name": "Chana Dal",
+      "quantity": 1050,
+      "unit": "500 g Packet",
+      "id": 2
+    },
+    {
+      "name": "Sugar",
+      "quantity": 550,
+      "unit": "1 Kg Packet",
+      "id": 3
+    }
+  ]
+}

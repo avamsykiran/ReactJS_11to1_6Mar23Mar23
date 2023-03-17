@@ -364,34 +364,102 @@ ReactJS
           reducer ←-----|                            |
                         |---------------------------←|dispatch(action)
 
+        cosnt itemsReducer = (state = { itemsList=[] } ,action) =>{
+            //itmes managed
+        }
+
+        cosnt empsReducer = (state = { empsList=[] } ,action) =>{
+            //emps managed
+        }
+
+        cosnt deptsReducer = (state = { deptsList=[] } ,action) =>{
+            //depsts managed
+        }
+
+        cosnt invStore = createStore(itemsReducer);
+
+            invStore                                    let items = useSelector(state => state.itemsList);
+                |- itemsList
+
+        cosnt hrStore = createStore(combineReducers({emps:empsReducer,depts:deptsReducer}));
+
+            hrStore                                     let emps = useSelector(state => state.emps.empsList)
+                |-depts
+                |   |-deptsList
+                |-emps
+                    |-empsList
+
     Assignment # 2
 
         Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
         hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
         The state has to be at application level and managed using REDUX.
 
+    rest-api using json-server
 
-    cosnt itemsReducer = (state = { itemsList=[] } ,action) =>{
-        //itmes managed
-    }
+        json-server is a javascript library to that generate fake rest-api end-points from a given '.json' file.
+        it is for learning purpose.
 
-    cosnt empsReducer = (state = { empsList=[] } ,action) =>{
-        //emps managed
-    }
+        md inv-api
+        cd inv-api
+        npm init -y
+        npm i json-server --save
 
-    cosnt deptsReducer = (state = { deptsList=[] } ,action) =>{
-        //depsts managed
-    }
+            inv-api
+                |- invData.json
+                |- package.json "start":"json-server --port 9999 --watch ./invData.json"
 
-    cosnt invStore = createStore(itemsReducer);
+        npm start
 
-        invStore                                    let items = useSelector(state => state.itemsList);
-            |- itemsList
+    
+    calling rest-api using AXIOS (asynchronous XML Input Output System)
 
-    cosnt hrStore = createStore(combineReducers({emps:empsReducer,depts:deptsReducer}));
+        npm i axios --save
 
-        hrStore                                     let emps = useSelector(state => state.emps.empsList)
-            |-depts
-            |   |-deptsList
-            |-emps
-                |-empsList
+            axios.get(url)  returns a Promise object
+            axios.post(url,requestBody)  returns a Promise object
+            axios.put(url,requestBody)  returns a Promise object
+            axios.delete(url)  returns a Promise object
+
+                let p1 = axios.get("http://localhost:9999/items");
+
+                p1.then( resp => {} ).catch( err => {} )
+
+    integrating rest-api calls with redux using redux-thunk 
+
+        npm i redux-thunk --save
+
+        redux-thunk offers a middleware called 'thunk' which sits between asynchronous calls and 'reducer'.
+
+        cosnt invStore = createStore(itemsReducer,applyMiddleware(thunk));
+
+        thunk accepts  function as an action, and executes the function and the result is shared
+        with the reducer through a action object.
+
+            store →-------(state)----------------------
+             ↑                   ↓                   ↓
+             |                   |                   |
+             |                   | useSelector       | useSelector (extract needed info from global-state)
+             |                   |                   |
+             | modifiedState   Component1          Component2
+             |                   |                   |
+             |                   |                   |
+             |                   | useDispatch       | useDispatch
+             |                   |                   |
+             |                   |                   |
+             |          |--←dispatch(actionObj)      |
+          reducer ←-----|                            |
+                        |                            |dispatch(actionThunk)
+                        |                            ↓
+                        |                           thunk invokes the actionThunk
+                        |                                              |-----------------------------------------|
+                        |----------------------------← (waitAction)----|  1. dispatch(waitAction)                |   
+                        |                                              |    2. make an axios call                |
+                        |                                              |        2(a) if sucessful response       |
+                        |----------------------------← (dataAction)----|                dispatch(dataAction)     |
+                        |                                              |        2(b) if error                    |
+                        |----------------------------← (errAction )----|                dispatch(errAction)      |   
+                                                                       |-----------------------------------------|    
+
+
+    
