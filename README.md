@@ -461,5 +461,13 @@ ReactJS
                         |----------------------------← (errAction )----|                dispatch(errAction)      |   
                                                                        |-----------------------------------------|    
 
+    Assignment # 3
 
-    
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
+        The state has to be at application level and managed using REDUX and integrate it with rest-api
+        using axios and redux-thunk.
+
+        the rest-api can be created using json-server.
+
+ 

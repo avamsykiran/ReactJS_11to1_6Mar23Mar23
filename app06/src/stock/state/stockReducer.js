@@ -1,30 +1,43 @@
 
-import { ADD_ITEM, UPD_ITEM, DEL_ITEM, MARK_ITEM_EDITABLE, UNMARK_ITEM_EDITABLE } from './stockActions';
+import { WAIT, ERR, REFRESH_ALL, REFRESH_ONE, PUSH_ONE, SKIP_ONE, MARK_ITEM_EDITABLE, UNMARK_ITEM_EDITABLE } from './stockActions';
 
 const initData = () => ({
-    items: [
-        { id: 1, name: "Rice", unit: "25 Kg Bag", quantity: 50 },
-        { id: 2, name: "Wheat", unit: "15 Kg Bag", quantity: 120 },
-        { id: 3, name: "Channa Dal", unit: "1 Kg Packet", quantity: 200 },
-        { id: 4, name: "Urd Dal", unit: "1 Kg Packet", quantity: 250 },
-        { id: 5, name: "Sugar", unit: "500g Packet", quantity: 450 }
-    ],
-    nextId: 6
+    items: null,
+    msg: null,
+    errMsg: null
 });
 
 const stockReducer = (state = initData(), action) => {
-    let { items, nextId } = state;
+    let { items, msg, errMsg } = state;
 
     switch (action.type) {
-        case ADD_ITEM:
-            items = [...items, { ...action.item, id: nextId }];
-            nextId = nextId + 1;
+        case WAIT:
+            msg = action.msg;
+            errMsg = null;
             break;
-        case UPD_ITEM:
-            items = items.map(i => i.id === action.item.id ? { ...action.item, isEditing: undefined } : i);
+        case ERR:
+            msg = null;
+            errMsg = action.errMsg;
             break;
-        case DEL_ITEM:
+        case REFRESH_ALL:
+            items = action.items;
+            msg = null;
+            errMsg = null;
+            break;
+        case PUSH_ONE:
+            items = [...items, action.item];
+            msg = null;
+            errMsg = null;
+            break;
+        case REFRESH_ONE:
+            items = items.map(i => i.id === action.item.id ? action.item : i);
+            msg = null;
+            errMsg = null;
+            break;
+        case SKIP_ONE:
             items = items.filter(i => i.id !== action.id);
+            msg = null;
+            errMsg = null;
             break;
         case MARK_ITEM_EDITABLE:
             items = items.map(i => i.id === action.id ? { ...i, isEditing: true } : i);
@@ -34,7 +47,7 @@ const stockReducer = (state = initData(), action) => {
             break;
     }
 
-    return { items, nextId };
+    return { items, msg, errMsg };
 }
 
 export default stockReducer;

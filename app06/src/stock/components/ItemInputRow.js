@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { createAddItemAction, createUpdateItemAction, createUnMarkItemEditableAction } from '../state/stockActions';
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { createUnMarkItemEditableAction } from '../state/stockActions';
+import { createAddItemActionThunk,createUpdateItemActionThunk} from '../state/stockActionThunks';
 
 const ItemInputRow = ({ item }) => {
 
@@ -15,7 +16,7 @@ const ItemInputRow = ({ item }) => {
 
     const submitBtnClick = e => {
         let item = { id, name, quantity, unit };
-        dispatch(isEditing ? createUpdateItemAction(item) : createAddItemAction(item));
+        dispatch(isEditing ? createUpdateItemActionThunk(item) : createAddItemActionThunk(item));
         setId(0);
         setName('');
         setQuantity(0);
