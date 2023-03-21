@@ -469,5 +469,27 @@ ReactJS
         using axios and redux-thunk.
 
         the rest-api can be created using json-server.
-
  
+    React Routing
+
+        npm i react-router react-router-dom
+
+            <BrowserRouter>
+
+                <Header />
+
+                <Routes>
+                    <Route path="/" element={<C1 />} />
+                    <Route path="/a" element={<C2 />} />
+                    <Route path="/b" element={<C3 />} />
+                    <Route path="/c/:pathVariable" element={<C4 />} />
+                </Routes>
+
+                <Footer />
+
+            </BrowserRouter>
+
+
+            <Link to"" ></Link>       instead of <a></a>
+
+            <Navigate to="" />
