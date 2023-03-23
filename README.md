@@ -492,4 +492,4 @@ ReactJS
 
             <Link to"" ></Link>       instead of <a></a>
 
-            <Navigate to="" />
+            <Navigate to="" />  
